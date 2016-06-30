@@ -1,6 +1,7 @@
 package com.example.administrator.wisdombeijing;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -10,8 +11,10 @@ import android.view.animation.ScaleAnimation;
 import android.widget.RelativeLayout;
 
 /**
- * 闪屏页面
- */
+*  闪屏页面
+* @author qiu
+* create at 2016/6/30 15:23
+*/
 public class SplashActivity extends Activity {
     RelativeLayout rlRoot;
 
@@ -25,8 +28,10 @@ public class SplashActivity extends Activity {
     }
 
     /**
-     * 开始一个动画
-     */
+    *  开始一个动画
+    * @author qiu
+    * create at 2016/6/30 15:23
+    */
     private void startAnim() {
         //设置动画同时运行，动画集合
         AnimationSet set = new AnimationSet(false);
@@ -47,5 +52,27 @@ public class SplashActivity extends Activity {
         set.addAnimation(rotate);
         set.addAnimation(scale);
         set.addAnimation(alpha);
+        //设置动画监听
+        set.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            //动画执行结束
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                //跳转到新手引导页
+                startActivity(new Intent(SplashActivity.this, GuideActivity.class));
+                finish();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        rlRoot.startAnimation(set);//开始动画
     }
 }
