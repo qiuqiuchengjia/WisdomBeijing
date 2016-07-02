@@ -11,6 +11,8 @@ import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
 import android.widget.RelativeLayout;
 
+import com.qiu.utils.PreUtils;
+
 
 /**
  * 闪屏页面 分支测试一下
@@ -84,8 +86,7 @@ public class SplashActivity extends Activity {
     */
     private void jumpNextPage(){
         //判断之前有没有显示过新手引导
-        SharedPreferences sharedPreferences = getSharedPreferences("config",MODE_PRIVATE);
-        boolean userGuide = sharedPreferences.getBoolean("is_user_guide_showed",false);
+        boolean userGuide= PreUtils.getBoolean(SplashActivity.this,"is_user_guide_showed",false);
         if(!userGuide){
             //跳转到新手引导页
             startActivity(new Intent(SplashActivity.this, GuideActivity.class));

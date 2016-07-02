@@ -16,6 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 
+import com.qiu.utils.PreUtils;
+
 import java.util.ArrayList;
 
 /**
@@ -48,8 +50,7 @@ public class GuideActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //更新sp,表示已经展示了新手引导页
-                SharedPreferences sharedPreferences = getSharedPreferences("config",MODE_PRIVATE);
-                sharedPreferences.edit().putBoolean("is_user_guide_showed",true).commit();
+                 PreUtils.setBoolean(GuideActivity.this,"is_user_guide_showed",true);
                 //跳转到主页面
                 startActivity(new Intent(GuideActivity.this,MainActivity.class));
                 finish();
