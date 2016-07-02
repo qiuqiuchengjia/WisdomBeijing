@@ -28,10 +28,10 @@ public class SplashActivity extends Activity {
     }
 
     /**
-    *  开始一个动画
-    * @author qiu
-    * create at 2016/6/30 15:23
-    */
+     *  开始一个动画
+     * @author qiu
+     * create at 2016/6/30 15:23
+     */
     private void startAnim() {
         //设置动画同时运行，动画集合
         AnimationSet set = new AnimationSet(false);
@@ -73,6 +73,6 @@ public class SplashActivity extends Activity {
             }
         });
 
-        rlRoot.startAnimation(set);//开始动画
+        rlRoot.startAnimation(set); //开始动画
     }
 }
