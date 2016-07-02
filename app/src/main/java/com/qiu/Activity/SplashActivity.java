@@ -53,7 +53,7 @@ public class SplashActivity extends Activity {
         scale.setDuration(1000);//设置时间为1秒
         //渐变，从完全透明到完全不透明
         AlphaAnimation alpha = new AlphaAnimation(0, 1);
-        alpha.setDuration(1000);
+        alpha.setDuration(2000);
         alpha.setFillAfter(true);
         //添加动画进动画集合
         set.addAnimation(rotate);
@@ -65,20 +65,15 @@ public class SplashActivity extends Activity {
             public void onAnimationStart(Animation animation) {
 
             }
-
             //动画执行结束
             @Override
             public void onAnimationEnd(Animation animation) {
                 jumpNextPage();
-
             }
-
             @Override
             public void onAnimationRepeat(Animation animation) {
-
             }
         });
-
         rlRoot.startAnimation(set); //开始动画
     }
     /**  
