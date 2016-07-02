@@ -11,7 +11,7 @@ import android.view.animation.ScaleAnimation;
 import android.widget.RelativeLayout;
 
 /**
-*  闪屏页面
+*  闪屏页面 分支测试一下
 * @author qiu
 * create at 2016/6/30 15:23
 */
