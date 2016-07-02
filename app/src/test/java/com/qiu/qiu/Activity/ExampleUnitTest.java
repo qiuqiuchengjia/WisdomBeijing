@@ -1,4 +1,4 @@
-package com.example.administrator.wisdombeijing;
+package com.qiu.qiu.Activity;
 
 import org.junit.Test;
 

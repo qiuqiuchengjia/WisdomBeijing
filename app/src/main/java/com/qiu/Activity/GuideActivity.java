@@ -1,6 +1,8 @@
-package com.example.administrator.wisdombeijing;
+package com.qiu.Activity;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -8,25 +10,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+
 import java.util.ArrayList;
 
-/**  
- *  新手引导页
+/**
+ * 新手引导页
  * 时间：2016/7/2 17:55
  * 博客：www.qiuchengjia.cn
- *  @author qiu
-*/
+ *
+ * @author qiu
+ */
 public class GuideActivity extends Activity {
     private ArrayList<ImageView> imageViewArrayList;
-    private static final int[] mInageIds = new int[]{R.mipmap.guide_1, R.mipmap.guide_2, R.mipmap.guide_3};
+    private static final int[] mImageIds = new int[]{R.mipmap.guide_1, R.mipmap.guide_2, R.mipmap.guide_3};
     private ViewPager viewPager;
     private LinearLayout llPointGroup;
     private int mPointWidth;//圆点之间的距离
     private View viewRedPoint;//小红点
+    private Button btnStart;//开始体验按钮
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,28 +43,41 @@ public class GuideActivity extends Activity {
         //引导圆点的父控件
         llPointGroup = (LinearLayout) findViewById(R.id.ll_point_group);
         viewRedPoint = findViewById(R.id.view_red_point);
+        btnStart = (Button) findViewById(R.id.bt_start);
+        btnStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //更新sp,表示已经展示了新手引导页
+                SharedPreferences sharedPreferences = getSharedPreferences("config",MODE_PRIVATE);
+                sharedPreferences.edit().putBoolean("is_user_guide_showed",true).commit();
+                //跳转到主页面
+                startActivity(new Intent(GuideActivity.this,MainActivity.class));
+                finish();
+            }
+        });
         initViews();
         viewPager = (ViewPager) findViewById(R.id.vp_guide);
         viewPager.setAdapter(new GuideAdapter());
         viewPager.setOnPageChangeListener(new GuidePageListener());
     }
 
-    /**  
+    /**
      * 初始化界面
      * 时间：2016/7/2 17:59
      * 博客：www.qiuchengjia.cn
-     *  @author qiu
-    */
+     *
+     * @author qiu
+     */
     private void initViews() {
         imageViewArrayList = new ArrayList<ImageView>();
         //初始化引导页的3个页面
-        for (int i = 0; i < mInageIds.length; i++) {
+        for (int i = 0; i < mImageIds.length; i++) {
             ImageView imageView = new ImageView(this);
-            imageView.setBackgroundResource(mInageIds[i]);//设置引导页背景
+            imageView.setBackgroundResource(mImageIds[i]);//设置引导页背景
             imageViewArrayList.add(imageView);
         }
         //初始化引导页的小圆点
-        for (int i = 0; i < mInageIds.length; i++) {
+        for (int i = 0; i < mImageIds.length; i++) {
             View point = new View(this);
             //设置引导页默认圆点
             point.setBackgroundResource(R.drawable.shape_point_gray);
@@ -84,13 +103,14 @@ public class GuideActivity extends Activity {
 
     /**
      * viewPager的适配器
-     *
-     * @author qiu create at 2016/6/30 15:01
-     */
+     * 时间：2016/7/2 23:16
+     * 博客：www.qiuchengjia.cn
+     * @author qiu
+    */
     class GuideAdapter extends PagerAdapter {
         @Override
         public int getCount() {
-            return mInageIds.length;
+            return mImageIds.length;
         }
 
         @Override
@@ -122,19 +142,21 @@ public class GuideActivity extends Activity {
         // 滑动事件
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            int len = (int) (mPointWidth * positionOffset)+position*mPointWidth;
+            int len = (int) (mPointWidth * positionOffset) + position * mPointWidth;
             //获取小红点的布局参数
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) viewRedPoint.getLayoutParams();
             params.leftMargin = len;//设置左边距
             viewRedPoint.setLayoutParams(params);//重新给小红点设置布局参数
         }
-
         // 某个页面被选中
         @Override
         public void onPageSelected(int position) {
-
+             if(position== mImageIds.length-1){//最后一个页面
+                   btnStart.setVisibility(View.VISIBLE);
+             }else{
+                 btnStart.setVisibility(View.INVISIBLE);
+             }
         }
-
         // 滑动状态发生变化
         @Override
         public void onPageScrollStateChanged(int state) {

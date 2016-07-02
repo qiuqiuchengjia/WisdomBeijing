@@ -1,7 +1,8 @@
-package com.example.administrator.wisdombeijing;
+package com.qiu.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -9,6 +10,7 @@ import android.view.animation.AnimationSet;
 import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
 import android.widget.RelativeLayout;
+
 
 /**
  * 闪屏页面 分支测试一下
@@ -67,9 +69,8 @@ public class SplashActivity extends Activity {
             //动画执行结束
             @Override
             public void onAnimationEnd(Animation animation) {
-                //跳转到新手引导页
-                startActivity(new Intent(SplashActivity.this, GuideActivity.class));
-                finish();
+                jumpNextPage();
+
             }
 
             @Override
@@ -79,5 +80,23 @@ public class SplashActivity extends Activity {
         });
 
         rlRoot.startAnimation(set); //开始动画
+    }
+    /**  
+     * 跳转到下一个页面
+     * 时间：2016/7/2 23:18
+     * 博客：www.qiuchengjia.cn
+     * @author qiu
+    */
+    private void jumpNextPage(){
+        //判断之前有没有显示过新手引导
+        SharedPreferences sharedPreferences = getSharedPreferences("config",MODE_PRIVATE);
+        boolean userGuide = sharedPreferences.getBoolean("is_user_guide_showed",false);
+        if(!userGuide){
+            //跳转到新手引导页
+            startActivity(new Intent(SplashActivity.this, GuideActivity.class));
+        }else{
+            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+        }
+        finish();
     }
 }
