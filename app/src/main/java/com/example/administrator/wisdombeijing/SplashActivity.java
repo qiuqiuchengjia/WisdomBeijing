@@ -11,12 +11,16 @@ import android.view.animation.ScaleAnimation;
 import android.widget.RelativeLayout;
 
 /**
-*  闪屏页面 分支测试一下
-* @author qiu
-* create at 2016/6/30 15:23
-*/
+ * 闪屏页面 分支测试一下
+ *
+ * @author qiu create at 2016/6/30 15:23
+ */
 public class SplashActivity extends Activity {
+    /**
+     * The Rl root.
+     */
     RelativeLayout rlRoot;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +32,8 @@ public class SplashActivity extends Activity {
     }
 
     /**
-     *  开始一个动画
+     * 开始一个动画
+     *
      * @author qiu
      * create at 2016/6/30 15:23
      */
