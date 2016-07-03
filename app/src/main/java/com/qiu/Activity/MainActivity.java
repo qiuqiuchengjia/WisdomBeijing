@@ -4,6 +4,8 @@ package com.qiu.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.view.Window;
+
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
 import com.qiu.Config.ConfigUI;
@@ -23,6 +25,7 @@ public class MainActivity extends SlidingActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);//设置没有标题栏
         setContentView(R.layout.activity_main);
         //设置侧边栏
         setBehindContentView(R.layout.left_menu);
