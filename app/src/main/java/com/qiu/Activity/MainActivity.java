@@ -6,8 +6,7 @@ import android.app.FragmentTransaction;
 import android.os.Bundle;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
-import com.qiu.Config.Config;
-import com.qiu.Config.ConfigGUI;
+import com.qiu.Config.ConfigUI;
 import com.qiu.Fragment.ContentFragment;
 import com.qiu.Fragment.LeftMenuFragment;
 import com.qiu.utils.ScreenUtils;
@@ -30,7 +29,7 @@ public class MainActivity extends SlidingActivity {
         SlidingMenu slidingMenu = getSlidingMenu();//获取侧边栏对象
         slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);//设置全屏触摸
         slidingMenu.setBehindOffset((int) (ScreenUtils.getWidth(MainActivity.this) *
-                ConfigGUI.SlidingMenuBehindOffset));//设置侧边栏预留宽度
+                ConfigUI.SlidingMenuBehindOffset));//设置侧边栏预留宽度
         initFragment();//初始化fragment
     }
 
