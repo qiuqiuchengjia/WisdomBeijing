@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">智慧北京</string>
     <string name="guide_button">开始体验</string>
+    <string name="home_pager_title">智慧北京</string>
+    <string name="news_center_pager_title">新闻</string>
+    <string name="smart_server_pager_title">生活</string>
+    <string name="gov_affairs_pager_title">政务</string>
+    <string name="setting_pager_title">设置</string>
 </resources>
