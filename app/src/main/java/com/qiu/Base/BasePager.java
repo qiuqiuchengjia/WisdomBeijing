@@ -3,8 +3,11 @@ package com.qiu.Base;
 import android.app.Activity;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.qiu.Activity.MainActivity;
 import com.qiu.Activity.R;
 
 /**
@@ -18,6 +21,7 @@ public class BasePager {
     public Activity mActivity;
     public TextView tv_title;//标题对象
     public FrameLayout fl_content;//内容对象
+    public ImageButton imageButton;//菜单按钮
     public BasePager(Activity activity){
         mActivity=activity;
         initViews();//初始化布局
@@ -37,5 +41,21 @@ public class BasePager {
         rootView = View.inflate(mActivity, R.layout.base_pager,null);
         tv_title= (TextView) rootView.findViewById(R.id.tv_title);
         fl_content= (FrameLayout) rootView.findViewById(R.id.fl_content);
+        imageButton= (ImageButton) rootView.findViewById(R.id.btn_menu);
+    }
+    /**
+     * 用来设置slidingMenu是否可用
+     * @param enable 是否可用
+     * @author qiu 时间：2016-07-04 14-39
+     */
+    public  void setSlidingMenuEnable(boolean enable){
+        //这个mActivity就是MainActivity
+        MainActivity mainActivity = (MainActivity) mActivity;
+        SlidingMenu slidingMenu = mainActivity.getSlidingMenu();
+        if(enable){
+            slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        }else{
+            slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
+        }
     }
 }

@@ -26,7 +26,7 @@ public class SmartServerPager extends BasePager {
     @Override
     public void initData() {
         tv_title.setText(R.string.smart_server_pager_title);
-
+        setSlidingMenuEnable(true);//设置侧边栏可用
         TextView textView = new TextView(mActivity);
         textView.setText("智慧服务");
         textView.setTextColor(Color.RED);

@@ -26,7 +26,7 @@ public class GovAffairsPager extends BasePager {
     @Override
     public void initData() {
         tv_title.setText(R.string.gov_affairs_pager_title);
-
+        setSlidingMenuEnable(true);//设置侧边栏可用
         TextView textView = new TextView(mActivity);
         textView.setText("政务");
         textView.setTextColor(Color.RED);

@@ -53,7 +53,7 @@ public class ContentFragment extends BaseFragment {
     public void initDate() {
         radioGroup.check(R.id.rb_home);//默认勾选首页
         //初始化五个子页面
-        pageList= new ArrayList<BasePager>();
+        pageList = new ArrayList<BasePager>();
         //初始化五个子页面
         pageList.add(new HomePager(mActivity));
         pageList.add(new NewsCenterPager(mActivity));
@@ -62,6 +62,38 @@ public class ContentFragment extends BaseFragment {
         pageList.add(new SettingPager(mActivity));
         //设置适配器
         viewPager.setAdapter(new ContentAdapter());
+        //设置radioGroup选择事件
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.rb_home:
+                        viewPager.setCurrentItem(0,false);//设置当前页面，并去掉页面切换动画
+                        pageList.get(0).initData();//当前被选中的页面，初始化数据
+                        break;
+                    case R.id.rb_news:
+                        viewPager.setCurrentItem(1,false);//设置当前页面
+                        pageList.get(1).initData();//当前被选中的页面，初始化数据
+                        break;
+                    case R.id.rb_smart:
+                        viewPager.setCurrentItem(2,false);//设置当前页面
+                        pageList.get(2).initData();//当前被选中的页面，初始化数据
+                        break;
+                    case R.id.rb_gow:
+                        viewPager.setCurrentItem(3,false);//设置当前页面
+                        pageList.get(3).initData();//当前被选中的页面，初始化数据
+                        break;
+                    case R.id.rb_setting:
+                        viewPager.setCurrentItem(4,false);//设置当前页面
+                        pageList.get(4).initData();//当前被选中的页面，初始化数据
+                        break;
+                    default:
+                        break;
+
+                }
+            }
+        });
+        pageList.get(0).initData();//手动初始化首页
     }
 
     class ContentAdapter extends PagerAdapter {
@@ -78,9 +110,9 @@ public class ContentFragment extends BaseFragment {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            BasePager pager= pageList.get(position);
+            BasePager pager = pageList.get(position);
             container.addView(pager.rootView);
-            pager.initData();//初始化数据
+          //  pager.initData();//初始化数据//不能初始化，否则会预加载下一个页面
             return pager.rootView;
         }
 

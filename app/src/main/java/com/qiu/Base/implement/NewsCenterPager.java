@@ -26,7 +26,7 @@ public class NewsCenterPager extends BasePager {
     @Override
     public void initData() {
         tv_title.setText(R.string.news_center_pager_title);
-
+        setSlidingMenuEnable(true);//设置侧边栏可用
         TextView textView = new TextView(mActivity);
         textView.setText("新闻中心");
         textView.setTextColor(Color.RED);

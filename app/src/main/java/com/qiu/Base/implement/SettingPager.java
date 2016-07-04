@@ -3,6 +3,7 @@ package com.qiu.Base.implement;
 import android.app.Activity;
 import android.graphics.Color;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.TextView;
 
 import com.qiu.Activity.R;
@@ -26,7 +27,8 @@ public class SettingPager extends BasePager {
     @Override
     public void initData() {
         tv_title.setText(R.string.setting_pager_title);
-
+        imageButton.setVisibility(View.GONE);//隐藏菜单按钮
+        setSlidingMenuEnable(false);//设置侧边栏不可用
         TextView textView = new TextView(mActivity);
         textView.setText("设置");
         textView.setTextColor(Color.RED);
