@@ -5,9 +5,6 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
-
-import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.view.annotation.ViewInject;
 import com.qiu.Activity.R;
 import com.qiu.Base.BasePager;
 import com.qiu.Base.implement.GovAffairsPager;
@@ -25,9 +22,7 @@ import java.util.ArrayList;
  * 说明： 主页面内容
  */
 public class ContentFragment extends BaseFragment {
-    @ViewInject(R.id.rg_group)
     private RadioGroup radioGroup;
-    @ViewInject(R.id.vp_content)
     private ViewPager viewPager;
     private ArrayList<BasePager> pageList;
 
@@ -40,7 +35,8 @@ public class ContentFragment extends BaseFragment {
     @Override
     public View initViews() {
         View view = View.inflate(mActivity, R.layout.fragment_content_menu, null);
-        ViewUtils.inject(this, view);//注入view和事件
+        radioGroup= (RadioGroup) view.findViewById(R.id.rg_group);
+        viewPager= (ViewPager) view.findViewById(R.id.vp_content);
         return view;
     }
 
