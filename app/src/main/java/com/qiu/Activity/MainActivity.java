@@ -48,4 +48,15 @@ public class MainActivity extends SlidingActivity {
         transaction.replace(R.id.fl_content,new ContentFragment(),FRAGMENT_CONTENT);
         transaction.commit();//提交事务
     }
+
+    /**
+     * 用来获取LeftMenuFragment，也就是获取侧边栏对象
+     * @return left menu fragment
+     * @author qiu 时间：2016-07-13 14-29
+     */
+    public LeftMenuFragment getLeftMenuFragment(){
+        FragmentManager fragmentManager = getFragmentManager();
+       LeftMenuFragment fragment = (LeftMenuFragment) fragmentManager.findFragmentByTag(FRAGMENT_LEFT_MENU);
+        return fragment;
+    }
 }

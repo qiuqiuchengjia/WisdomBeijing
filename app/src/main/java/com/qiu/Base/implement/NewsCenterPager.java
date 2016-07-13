@@ -16,9 +16,11 @@ import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
+import com.qiu.Activity.MainActivity;
 import com.qiu.Activity.R;
 import com.qiu.Base.BasePager;
 import com.qiu.Config.ConfigNet;
+import com.qiu.Fragment.LeftMenuFragment;
 import com.qiu.domian.NewsData;
 
 /**
@@ -80,5 +82,9 @@ public class NewsCenterPager extends BasePager {
         Gson gson = new Gson();
         NewsData data = gson.fromJson(result, NewsData.class);
         Log.d("json数据",data.toString());
+
+        MainActivity mainActivity = (MainActivity) mActivity;
+        LeftMenuFragment leftMenuFragment = mainActivity.getLeftMenuFragment();
+        leftMenuFragment.setMenuData(data);
     }
 }

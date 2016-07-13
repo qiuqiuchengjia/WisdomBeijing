@@ -4,9 +4,10 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_red_light"
     android:orientation="vertical">
-    <TextView
-        android:text="我是侧边栏"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+
+    <ListView
+        android:id="@+id/lv_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
