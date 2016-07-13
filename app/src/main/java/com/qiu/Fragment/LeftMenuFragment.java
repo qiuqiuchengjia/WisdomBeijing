@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.qiu.Activity.R;
 import com.qiu.domian.NewsData;
 
+import java.util.ArrayList;
+
 /**
  * 作者：qiu
  * 时间：2016/7/3:21:26
@@ -18,6 +20,7 @@ import com.qiu.domian.NewsData;
  */
 public class LeftMenuFragment extends BaseFragment {
     private ListView lvList;
+    private   ArrayList<NewsData.NewsMenuData> mMenuList;
     /**
      * 初始化布局
      * @return view
@@ -39,7 +42,7 @@ public class LeftMenuFragment extends BaseFragment {
         super.initDate();
     }
     /**  
-     * 给侧边栏的适配器
+     * 侧边栏数据的适配器
      * 时间：2016/7/13 14:14
      * 博客：www.qiuchengjia.cn
      * @author qiu
@@ -47,20 +50,22 @@ public class LeftMenuFragment extends BaseFragment {
     class MenuAdapter extends BaseAdapter{
         @Override
         public int getCount() {
-            return 0;
+            return mMenuList.size();
         }
         @Override
         public Object getItem(int position) {
-            return null;
+            return mMenuList.get(position);
         }
         @Override
         public long getItemId(int position) {
-            return 0;
+            return position;
         }
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             View view = View.inflate(mActivity,R.layout.list_menu_item,null);
             TextView tvTitle = (TextView) view.findViewById(R.id.tv_title);
+            NewsData.NewsMenuData newsMenuData = mMenuList.get(position);
+            tvTitle.setText(newsMenuData.title);
             return view;
         }
     }
@@ -71,5 +76,7 @@ public class LeftMenuFragment extends BaseFragment {
      */
     public void setMenuData(NewsData data){
         Log.d("LeftMenuFragment", "侧边栏拿到数据了"+data);
+        mMenuList = data.data;
+        lvList.setAdapter(new MenuAdapter());
     }
 }
