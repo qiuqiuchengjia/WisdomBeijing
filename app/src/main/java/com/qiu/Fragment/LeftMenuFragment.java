@@ -3,6 +3,7 @@ package com.qiu.Fragment;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,6 +22,8 @@ import java.util.ArrayList;
 public class LeftMenuFragment extends BaseFragment {
     private ListView lvList;
     private   ArrayList<NewsData.NewsMenuData> mMenuList;
+    private int mCurrentPos;//当前被点击的菜单栏项
+    private  MenuAdapter adapter;
     /**
      * 初始化布局
      * @return view
@@ -39,7 +42,14 @@ public class LeftMenuFragment extends BaseFragment {
      */
     @Override
     public void initDate() {
-        super.initDate();
+        //设置item点击事件
+        lvList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                mCurrentPos=position;
+                adapter.notifyDataSetChanged();//刷新
+            }
+        });
     }
     /**  
      * 侧边栏数据的适配器
@@ -66,6 +76,12 @@ public class LeftMenuFragment extends BaseFragment {
             TextView tvTitle = (TextView) view.findViewById(R.id.tv_title);
             NewsData.NewsMenuData newsMenuData = mMenuList.get(position);
             tvTitle.setText(newsMenuData.title);
+            if(mCurrentPos==position){//判断当前绘制的view是否被选中
+                //显示红色
+
+            }else{
+                //显示白色
+            }
             return view;
         }
     }
@@ -77,6 +93,7 @@ public class LeftMenuFragment extends BaseFragment {
     public void setMenuData(NewsData data){
         Log.d("LeftMenuFragment", "侧边栏拿到数据了"+data);
         mMenuList = data.data;
-        lvList.setAdapter(new MenuAdapter());
+        adapter = new MenuAdapter();
+        lvList.setAdapter(adapter);
     }
 }

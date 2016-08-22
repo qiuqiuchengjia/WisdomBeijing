@@ -6,7 +6,10 @@
     android:orientation="vertical">
 
     <ListView
+        android:layout_marginTop="40dp"
         android:id="@+id/lv_list"
+        android:listSelector="@android:color/transparent"
+        android:dividerHeight="0dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

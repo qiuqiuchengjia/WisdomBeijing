@@ -24,10 +24,10 @@ import java.util.ArrayList;
  * 新手引导页
  * 时间：2016/7/2 17:55
  * 博客：www.qiuchengjia.cn
- *
  * @author qiu
  */
 public class GuideActivity extends Activity {
+
     private ArrayList<ImageView> imageViewArrayList;
     private static final int[] mImageIds = new int[]{R.mipmap.guide_1, R.mipmap.guide_2, R.mipmap.guide_3};
     private ViewPager viewPager;
@@ -66,7 +66,6 @@ public class GuideActivity extends Activity {
      * 初始化界面
      * 时间：2016/7/2 17:59
      * 博客：www.qiuchengjia.cn
-     *
      * @author qiu
      */
     private void initViews() {
@@ -107,7 +106,7 @@ public class GuideActivity extends Activity {
      * 时间：2016/7/2 23:16
      * 博客：www.qiuchengjia.cn
      * @author qiu
-    */
+     */
     class GuideAdapter extends PagerAdapter {
         @Override
         public int getCount() {
@@ -135,7 +134,6 @@ public class GuideActivity extends Activity {
      * viewPager滑动事件监听
      * 时间：2016/7/2 16:02
      * 博客：www.qiuchengjia.cn
-     *
      * @author qiu
      */
     class GuidePageListener implements ViewPager.OnPageChangeListener {
@@ -163,6 +161,5 @@ public class GuideActivity extends Activity {
         public void onPageScrollStateChanged(int state) {
 
         }
-
     }
 }
