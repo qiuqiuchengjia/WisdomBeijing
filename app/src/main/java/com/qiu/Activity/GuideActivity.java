@@ -24,7 +24,7 @@ import java.util.ArrayList;
  * 新手引导页
  * 时间：2016/7/2 17:55
  * 博客：www.qiuchengjia.cn
- * @author qiu
+ * @author qiuqiu
  */
 public class GuideActivity extends Activity {
 
