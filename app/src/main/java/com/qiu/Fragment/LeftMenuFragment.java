@@ -9,7 +9,10 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.qiu.Activity.MainActivity;
 import com.qiu.Activity.R;
+import com.qiu.Base.implement.NewsCenterPager;
 import com.qiu.domian.NewsData;
 
 import java.util.ArrayList;
@@ -38,6 +41,18 @@ public class LeftMenuFragment extends BaseFragment {
     }
 
     /**
+     * 设置当前菜单详情页
+     * @param position the position
+     * @author qiu  博客：www.qiuchengjia.cn 时间：2016-08-23
+     */
+    protected  void setCurrentMenuDatailPager(int position){
+        MainActivity mainUi= (MainActivity) mActivity;
+        ContentFragment contentFragment = mainUi.getContentFragment();//获取主页面的fragment
+        NewsCenterPager newsCenterPager = contentFragment.getNewsCententPager();//获取新闻中心页面
+        newsCenterPager.setCurrentMenuDetailPager(position);//设置当前菜单项
+    }
+
+    /**
      * 用来初始化数据
      * @author qiu 时间：2016-07-13 14-14
      */
@@ -49,9 +64,23 @@ public class LeftMenuFragment extends BaseFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 mCurrentPos=position;
                 adapter.notifyDataSetChanged();//刷新
+
+                setCurrentMenuDatailPager(position);//设置当前菜单详情页
+                toggleSlidingMenu();//隐藏
             }
         });
     }
+
+    /**
+     * 切换SlidingMenu的状态
+     * @author qiu  博客：www.qiuchengjia.cn 时间：2016-08-23
+     */
+    private void toggleSlidingMenu() {
+        MainActivity mainUi= (MainActivity) mActivity;
+        SlidingMenu sliding= mainUi.getSlidingMenu();
+        sliding.toggle();//切换状态，显示时隐藏，隐藏时显示
+    }
+
     /**  
      * 侧边栏数据的适配器
      * 时间：2016/7/13 14:14

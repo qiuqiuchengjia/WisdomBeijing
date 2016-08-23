@@ -42,6 +42,22 @@ public class BasePager {
         tv_title= (TextView) rootView.findViewById(R.id.tv_title);
         fl_content= (FrameLayout) rootView.findViewById(R.id.fl_content);
         imageButton= (ImageButton) rootView.findViewById(R.id.btn_menu);
+        //为菜单图片设置点击监听
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleSlidingMenu();
+            }
+        });
+    }
+    /**
+     * 切换SlidingMenu的状态
+     * @author qiu  博客：www.qiuchengjia.cn 时间：2016-08-23
+     */
+    private void toggleSlidingMenu() {
+        MainActivity mainUi= (MainActivity) mActivity;
+        SlidingMenu sliding= mainUi.getSlidingMenu();
+        sliding.toggle();//切换状态，显示时隐藏，隐藏时显示
     }
     /**
      * 用来设置slidingMenu是否可用

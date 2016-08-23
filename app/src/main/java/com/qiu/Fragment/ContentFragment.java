@@ -117,4 +117,13 @@ public class ContentFragment extends BaseFragment {
             container.removeView((View) object);
         }
     }
+
+    /**
+     * 获取新闻中心页面
+     * @return the news center pager
+     * @author qiu  博客：www.qiuchengjia.cn 时间：2016-08-23
+     */
+    public NewsCenterPager getNewsCententPager(){
+        return (NewsCenterPager) pageList.get(1);
+    }
 }
