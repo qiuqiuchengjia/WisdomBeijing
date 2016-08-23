@@ -49,6 +49,7 @@ public class NewsCenterPager extends BasePager {
      */
     @Override
     public void initData() {
+        setSlidingMenuEnable(true);//设置侧边栏可用
         getDataFromServer();//从服务器获取数据
     }
 
