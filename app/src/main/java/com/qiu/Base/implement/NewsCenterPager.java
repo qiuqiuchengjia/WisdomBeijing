@@ -38,6 +38,7 @@ import java.util.ArrayList;
  */
 public class NewsCenterPager extends BasePager {
     private ArrayList<BaseMenuDetailPager> mPagers;//4个菜单详情页的集合
+    private   NewsData data;
     public NewsCenterPager(Activity activity) {
         super(activity);
     }
@@ -51,10 +52,10 @@ public class NewsCenterPager extends BasePager {
         tv_title.setText(R.string.news_center_pager_title);
         setSlidingMenuEnable(true);//设置侧边栏可用
         TextView textView = new TextView(mActivity);
-        textView.setText("新闻中心");
-        textView.setTextColor(Color.RED);
-        textView.setTextSize(25);
-        textView.setGravity(Gravity.CENTER);
+       // textView.setText("");//新闻中心
+        //textView.setTextColor(Color.RED);
+       // textView.setTextSize(25);
+       // textView.setGravity(Gravity.CENTER);
         //像fragment中添加动态布局
         fl_content.addView(textView);
         getDataFromServer();//从服务器获取数据
@@ -88,7 +89,8 @@ public class NewsCenterPager extends BasePager {
      */
     protected void parseData(String result){
         Gson gson = new Gson();
-        NewsData data = gson.fromJson(result, NewsData.class);
+
+        data = gson.fromJson(result, NewsData.class);
         Log.d("json数据",data.toString());
         //刷新侧边栏的数据
         MainActivity mainActivity = (MainActivity) mActivity;
@@ -100,6 +102,8 @@ public class NewsCenterPager extends BasePager {
         mPagers.add(new TopicMenuDetailPager(mainActivity));
         mPagers.add(new PhotoMenuDetailPager(mainActivity));
         mPagers.add(new InteractMenuDetailPager(mainActivity));
+
+        setCurrentMenuDetailPager(0);//设置菜单详情页-新闻为默认当前页
     }
 
 
@@ -112,5 +116,9 @@ public class NewsCenterPager extends BasePager {
         BaseMenuDetailPager pager = mPagers.get(position);//获取当前要显示的菜单栏详情页
         fl_content.removeAllViews();//清除之前的布局
         fl_content.addView(pager.mRootView);//将菜单详情页的布局设置给帧布局
+
+        //设置当前页的标题
+        NewsData.NewsMenuData menuData= data.data.get(position);
+        tv_title.setText(menuData.title);
     }
 }
