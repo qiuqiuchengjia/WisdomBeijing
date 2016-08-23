@@ -25,6 +25,17 @@ public class NoScrollViewPager extends ViewPager{
         return false;
     }
 
+    /**
+     * 表示事件是否拦截,返回false表示不拦截
+     * @param ev the ev
+     * @return the boolean
+     * @author qiu  博客：www.qiuchengjia.cn 时间：2016-08-23
+     */
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        return false;
+    }
+
     public NoScrollViewPager(Context context) {
         super(context);
     }
