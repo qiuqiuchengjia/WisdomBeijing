@@ -13,6 +13,7 @@
         android:text="新闻"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableLeft="@mipmap/menu_arr_select"/>
+        android:enabled="false"
+        android:drawableLeft="@drawable/btn_menu_selector"/>
 
 </LinearLayout>

@@ -1,5 +1,6 @@
 package com.qiu.Fragment;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,9 +79,12 @@ public class LeftMenuFragment extends BaseFragment {
             tvTitle.setText(newsMenuData.title);
             if(mCurrentPos==position){//判断当前绘制的view是否被选中
                 //显示红色
-
+                tvTitle.setTextColor(Color.RED);
+                tvTitle.setEnabled(true);
             }else{
                 //显示白色
+                tvTitle.setTextColor(Color.WHITE);
+                tvTitle.setEnabled(false);
             }
             return view;
         }
