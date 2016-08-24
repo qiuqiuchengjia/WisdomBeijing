@@ -30,7 +30,7 @@ public class MainActivity extends SlidingActivity {
         //设置侧边栏
         setBehindContentView(R.layout.left_menu);
         SlidingMenu slidingMenu = getSlidingMenu();//获取侧边栏对象
-        slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);//设置全屏触摸
+        slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);//设置边缘触摸
         slidingMenu.setBehindOffset((int) (ScreenUtils.getWidth(MainActivity.this) *
                 ConfigUI.SlidingMenuBehindOffset));//设置侧边栏预留宽度
         initFragment();//初始化fragment
