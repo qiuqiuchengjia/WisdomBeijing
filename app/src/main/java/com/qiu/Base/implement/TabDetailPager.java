@@ -36,7 +36,7 @@ public class TabDetailPager extends BaseMenuDetailPager {
         textView.setTextColor(Color.RED);
         textView.setTextSize(25);
         textView.setGravity(Gravity.CENTER);
-        return textView;
+        return this.textView;
     }
 
     /**

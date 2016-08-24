@@ -13,6 +13,7 @@ import com.qiu.Activity.R;
 import com.qiu.Base.BaseMenuDetailPager;
 import com.qiu.Base.implement.TabDetailPager;
 import com.qiu.domian.NewsData;
+import com.viewpagerindicator.TabPageIndicator;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,7 @@ import java.util.ArrayList;
  */
 public class NewsMenuDetailPager extends BaseMenuDetailPager{
     private ViewPager mViewPager;
+    private  TabPageIndicator mIndicator;
     private  ArrayList<TabDetailPager>  mViewPagerList;
     private ArrayList<NewsData.NewsTabData> mNewTabData;//页签网络数据
     /**
@@ -46,6 +48,9 @@ public class NewsMenuDetailPager extends BaseMenuDetailPager{
     public View initViews() {
         View view=View.inflate(mActivity, R.layout.news_menu_detail,null);
         mViewPager = (ViewPager) view.findViewById(R.id.vp_menu_detail);
+
+        //初始化自定义控件TabPageIndicator
+        mIndicator = (TabPageIndicator)view.findViewById(R.id.indicator);
         return view;
     }
 
@@ -63,6 +68,7 @@ public class NewsMenuDetailPager extends BaseMenuDetailPager{
             mViewPagerList.add(pager);
         }
         mViewPager.setAdapter(new MenuDetailAdapter());//设置适配器
+        mIndicator.setViewPager(mViewPager);//必须在ViewPager设置完adapter之后才能调用
     }
     /**
      * Description: 设置数据适配器
@@ -71,6 +77,10 @@ public class NewsMenuDetailPager extends BaseMenuDetailPager{
      * @author: qiu
      */
     class MenuDetailAdapter extends PagerAdapter{
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mNewTabData.get(position).title;
+        }
         @Override
         public int getCount() {
             return mViewPagerList.size();

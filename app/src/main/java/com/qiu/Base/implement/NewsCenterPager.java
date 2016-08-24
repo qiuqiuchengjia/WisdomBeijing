@@ -114,5 +114,6 @@ public class NewsCenterPager extends BasePager {
         NewsData.NewsMenuData menuData= data.data.get(position);
         tv_title.setText(menuData.title);
         pager.initData();//初始化当前页面的数据
+
     }
 }
