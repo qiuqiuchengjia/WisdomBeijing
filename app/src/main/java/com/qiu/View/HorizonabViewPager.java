@@ -20,7 +20,11 @@ public class HorizonabViewPager extends ViewPager {
      */
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        getParent().requestDisallowInterceptTouchEvent(true);//用getParent去请求
+        if(getCurrentItem()!=0){
+            getParent().requestDisallowInterceptTouchEvent(true);//用getParent去请求,不拦截
+        }else{
+            getParent().requestDisallowInterceptTouchEvent(false);//用getParent去请求，拦截
+        }
         return super.dispatchTouchEvent(ev);
     }
 
