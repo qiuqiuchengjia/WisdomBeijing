@@ -7,6 +7,8 @@ import android.support.v4.view.ViewPager;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.qiu.Activity.R;
@@ -28,6 +30,7 @@ public class NewsMenuDetailPager extends BaseMenuDetailPager{
     private  TabPageIndicator mIndicator;
     private  ArrayList<TabDetailPager>  mViewPagerList;
     private ArrayList<NewsData.NewsTabData> mNewTabData;//页签网络数据
+    private ImageButton mImageButton;//跳转下一个页签按钮
     /**
      * 构造函数
      * @param activity the activity
@@ -48,6 +51,7 @@ public class NewsMenuDetailPager extends BaseMenuDetailPager{
     public View initViews() {
         View view=View.inflate(mActivity, R.layout.news_menu_detail,null);
         mViewPager = (ViewPager) view.findViewById(R.id.vp_menu_detail);
+        mImageButton= (ImageButton) view.findViewById(R.id.btn_next);
 
         //初始化自定义控件TabPageIndicator
         mIndicator = (TabPageIndicator)view.findViewById(R.id.indicator);
@@ -69,6 +73,22 @@ public class NewsMenuDetailPager extends BaseMenuDetailPager{
         }
         mViewPager.setAdapter(new MenuDetailAdapter());//设置适配器
         mIndicator.setViewPager(mViewPager);//必须在ViewPager设置完adapter之后才能调用
+        mImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextPager(mViewPager);
+            }
+        });
+    }
+
+    /**
+     * 跳转下一个页面
+     * @param view the view
+     * @author qiu  博客：www.qiuchengjia.cn 时间：2016-08-24
+     */
+    public void nextPager(View view){
+        int currentItem=mViewPager.getCurrentItem();
+        mViewPager.setCurrentItem(++currentItem);
     }
     /**
      * Description: 设置数据适配器
