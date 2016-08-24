@@ -25,7 +25,7 @@
             android:src="@mipmap/news_cate_arr" />
     </LinearLayout>
 
-    <android.support.v4.view.ViewPager
+    <com.qiu.View.HorizonabViewPager
         android:id="@+id/vp_menu_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
