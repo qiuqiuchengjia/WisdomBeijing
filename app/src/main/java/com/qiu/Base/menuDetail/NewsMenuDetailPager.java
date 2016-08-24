@@ -77,6 +77,11 @@ public class NewsMenuDetailPager extends BaseMenuDetailPager{
      * @author: qiu
      */
     class MenuDetailAdapter extends PagerAdapter{
+        /**
+         * 重写此方法，返回页面的标题，用于viewpagerindicator的页签显示
+         * @param position the position
+         * @return the page title
+         */
         @Override
         public CharSequence getPageTitle(int position) {
             return mNewTabData.get(position).title;
