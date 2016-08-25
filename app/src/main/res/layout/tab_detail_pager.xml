@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v4.view.ViewPager
+    <com.qiu.View.TopNewsViewPager
         android:id="@+id/vp_news"
         android:layout_width="match_parent"
-        android:layout_height="140dp"/>
+        android:layout_height="200dp"/>
 
     <ListView
         android:id="@+id/lv_list"
