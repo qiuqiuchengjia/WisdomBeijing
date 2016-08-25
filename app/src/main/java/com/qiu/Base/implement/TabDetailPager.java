@@ -110,6 +110,7 @@ public class TabDetailPager extends BaseMenuDetailPager {
         private BitmapUtils bitmapUtils;
         public TopNewsAdapter(){
             bitmapUtils = new BitmapUtils(mActivity);
+            bitmapUtils.configDefaultLoadingImage(R.mipmap.topnews_item_default);//设置默认图片
 
         }
         @Override
@@ -123,7 +124,6 @@ public class TabDetailPager extends BaseMenuDetailPager {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             ImageView imageView= new ImageView(mActivity);
-            imageView.setImageResource(R.mipmap.topnews_item_default);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);//基于控件大小去填充图片
             TabData.TopNewsData topNewsData = mTabDetailData.data.topnews.get(position);
             //传递imageView对象和图片地址
