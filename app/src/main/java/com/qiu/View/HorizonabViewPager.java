@@ -20,11 +20,7 @@ public class HorizonabViewPager extends ViewPager {
      */
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
-        if(getCurrentItem()!=0){
-            getParent().requestDisallowInterceptTouchEvent(true);//用getParent去请求,不拦截
-        }else{//如果是第一个页面，需要显示侧边栏，请求父控件拦截
-            getParent().requestDisallowInterceptTouchEvent(false);//用getParent去请求，拦截
-        }
+        getParent().requestDisallowInterceptTouchEvent(true);//用getParent去请求,不拦截
         return super.dispatchTouchEvent(ev);
     }
 
