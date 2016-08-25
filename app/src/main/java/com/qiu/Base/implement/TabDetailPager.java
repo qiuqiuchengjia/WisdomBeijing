@@ -25,18 +25,22 @@ import com.qiu.Config.ConfigNet;
 import com.qiu.domian.NewsData;
 import com.qiu.domian.TabData;
 
+import java.util.ArrayList;
+
 /**
  * Description: 页签详情页
  * Data：2016/8/23-20:16
  * Blog：www.qiuchengjia.cn
  * Author: qiu
  */
-public class TabDetailPager extends BaseMenuDetailPager {
+public class TabDetailPager extends BaseMenuDetailPager implements ViewPager.OnPageChangeListener{
     private NewsData.NewsTabData mTabData;
     private  TextView textView;
     private String mUrl;
     private  TabData mTabDetailData;
     private ViewPager mViewPager;
+    private TextView mTextView;//头条新闻标题
+    private    ArrayList<TabData.TopNewsData> topnews;//头条新闻数据列表集合
     /**
      * 构造函数
      * @param activity the activity
@@ -53,6 +57,7 @@ public class TabDetailPager extends BaseMenuDetailPager {
     public View initViews() {
         View view= View.inflate(mActivity, R.layout.tab_detail_pager,null);
         mViewPager= (ViewPager) view.findViewById(R.id.vp_news);
+        mTextView= (TextView) view.findViewById(R.id.tv_title);
         return view;
     }
     /**
@@ -63,6 +68,7 @@ public class TabDetailPager extends BaseMenuDetailPager {
     public void initData() {
         //textView.setText(mTabData.title);
         getDataFromServer();
+        mViewPager.setOnPageChangeListener(this);
     }
 
     private void getDataFromServer() {
@@ -97,7 +103,29 @@ public class TabDetailPager extends BaseMenuDetailPager {
         Gson gson = new Gson();
         mTabDetailData = gson.fromJson(result, TabData.class);
         Log.d("页签详情解析:",mTabDetailData.toString());
+        topnews = mTabDetailData.data.topnews;
         mViewPager.setAdapter(new TopNewsAdapter());
+        mTextView.setText(topnews.get(0).title);//头条新闻标题
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    /**
+     * 头条新闻滑动事件处理，当页面滑动之后
+     * @param position the position
+     * @author qiu  博客：www.qiuchengjia.cn 时间：2016-08-25
+     */
+    @Override
+    public void onPageSelected(int position) {
+        mTextView.setText(topnews.get(position).title);//头条新闻标题
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 
     /**
