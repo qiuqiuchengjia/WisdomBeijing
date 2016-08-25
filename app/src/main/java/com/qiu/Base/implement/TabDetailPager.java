@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -106,7 +107,11 @@ public class TabDetailPager extends BaseMenuDetailPager {
      * @author: qiu
      */
     class TopNewsAdapter extends PagerAdapter{
+        private BitmapUtils bitmapUtils;
+        public TopNewsAdapter(){
+            bitmapUtils = new BitmapUtils(mActivity);
 
+        }
         @Override
         public int getCount() {
             return mTabDetailData.data.topnews.size();
@@ -120,6 +125,9 @@ public class TabDetailPager extends BaseMenuDetailPager {
             ImageView imageView= new ImageView(mActivity);
             imageView.setImageResource(R.mipmap.topnews_item_default);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);//基于控件大小去填充图片
+            TabData.TopNewsData topNewsData = mTabDetailData.data.topnews.get(position);
+            //传递imageView对象和图片地址
+            bitmapUtils.display(imageView,ConfigNet.SERVER_URL_NAME+topNewsData.topimage);
             container.addView(imageView);
             return imageView;
         }
