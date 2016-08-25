@@ -6,6 +6,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.qiu.Activity.R;
 import com.qiu.Base.BaseMenuDetailPager;
 import com.qiu.domian.NewsData;
 
@@ -31,20 +32,15 @@ public class TabDetailPager extends BaseMenuDetailPager {
 
     @Override
     public View initViews() {
-        textView = new TextView(mActivity);
-        textView.setText("页签详情页");
-        textView.setTextColor(Color.RED);
-        textView.setTextSize(25);
-        textView.setGravity(Gravity.CENTER);
-        return this.textView;
+        View view= View.inflate(mActivity, R.layout.tab_detail_pager,null);
+        return view;
     }
-
     /**
      * 初始化数据
      * @author qiu  博客：www.qiuchengjia.cn 时间：2016-08-23
      */
     @Override
     public void initData() {
-        textView.setText(mTabData.title);
+        //textView.setText(mTabData.title);
     }
 }
