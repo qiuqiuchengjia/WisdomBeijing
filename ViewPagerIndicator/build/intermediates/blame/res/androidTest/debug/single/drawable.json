@@ -2,5 +2,9 @@
     {
         "merged": "D:\\JAVA\\AndroidStudio\\WisdomBeijing\\ViewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\vpi__tab_indicator.xml",
         "source": "D:\\JAVA\\AndroidStudio\\WisdomBeijing\\ViewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\drawable\\vpi__tab_indicator.xml"
+    },
+    {
+        "merged": "D:\\JAVA\\AndroidStudio\\WisdomBeijing\\ViewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\vpi__tab_text_color_indicator.xml",
+        "source": "D:\\JAVA\\AndroidStudio\\WisdomBeijing\\ViewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\drawable\\vpi__tab_text_color_indicator.xml"
     }
 ]

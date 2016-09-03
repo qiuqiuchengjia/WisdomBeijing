@@ -16,6 +16,10 @@
         "source": "D:\\JAVA\\AndroidStudio\\WisdomBeijing\\ViewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\vpi__tab_unselected_holo.9.png"
     },
     {
+        "merged": "D:\\JAVA\\AndroidStudio\\WisdomBeijing\\ViewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\news_tab_item_bg_select.9.png",
+        "source": "D:\\JAVA\\AndroidStudio\\WisdomBeijing\\ViewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\news_tab_item_bg_select.9.png"
+    },
+    {
         "merged": "D:\\JAVA\\AndroidStudio\\WisdomBeijing\\ViewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\vpi__tab_unselected_pressed_holo.9.png",
         "source": "D:\\JAVA\\AndroidStudio\\WisdomBeijing\\ViewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\vpi__tab_unselected_pressed_holo.9.png"
     },

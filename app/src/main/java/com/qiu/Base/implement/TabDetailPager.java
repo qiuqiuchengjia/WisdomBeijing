@@ -24,6 +24,7 @@ import com.qiu.Base.BaseMenuDetailPager;
 import com.qiu.Config.ConfigNet;
 import com.qiu.domian.NewsData;
 import com.qiu.domian.TabData;
+import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
 
@@ -41,6 +42,7 @@ public class TabDetailPager extends BaseMenuDetailPager implements ViewPager.OnP
     private ViewPager mViewPager;
     private TextView mTextView;//头条新闻标题
     private    ArrayList<TabData.TopNewsData> topnews;//头条新闻数据列表集合
+    private CirclePageIndicator mIndicator;//头条新闻位置指示器
     /**
      * 构造函数
      * @param activity the activity
@@ -58,6 +60,7 @@ public class TabDetailPager extends BaseMenuDetailPager implements ViewPager.OnP
         View view= View.inflate(mActivity, R.layout.tab_detail_pager,null);
         mViewPager= (ViewPager) view.findViewById(R.id.vp_news);
         mTextView= (TextView) view.findViewById(R.id.tv_title);
+        mIndicator= (CirclePageIndicator) view.findViewById(R.id.indicator);
         return view;
     }
     /**
@@ -68,7 +71,7 @@ public class TabDetailPager extends BaseMenuDetailPager implements ViewPager.OnP
     public void initData() {
         //textView.setText(mTabData.title);
         getDataFromServer();
-        mViewPager.setOnPageChangeListener(this);
+
     }
 
     private void getDataFromServer() {
@@ -105,6 +108,10 @@ public class TabDetailPager extends BaseMenuDetailPager implements ViewPager.OnP
         Log.d("页签详情解析:",mTabDetailData.toString());
         topnews = mTabDetailData.data.topnews;
         mViewPager.setAdapter(new TopNewsAdapter());
+        mIndicator.setViewPager(mViewPager);
+        mIndicator.setSnap(true);//支持快照显示
+        mIndicator.setOnPageChangeListener(this);
+        mIndicator.onPageSelected(0);//让指示器重新定位到第一个点
         mTextView.setText(topnews.get(0).title);//头条新闻标题
     }
 
