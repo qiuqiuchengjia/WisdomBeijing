@@ -8,7 +8,9 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +45,9 @@ public class TabDetailPager extends BaseMenuDetailPager implements ViewPager.OnP
     private TextView mTextView;//头条新闻标题
     private    ArrayList<TabData.TopNewsData> topnews;//头条新闻数据列表集合
     private CirclePageIndicator mIndicator;//头条新闻位置指示器
+    private ListView lvList;//新闻列表
+    private NewAdapter newAdapter;
+    private  ArrayList<TabData.TabNewsData> mNewList;//新闻数据集合
     /**
      * 构造函数
      * @param activity the activity
@@ -61,6 +66,7 @@ public class TabDetailPager extends BaseMenuDetailPager implements ViewPager.OnP
         mViewPager= (ViewPager) view.findViewById(R.id.vp_news);
         mTextView= (TextView) view.findViewById(R.id.tv_title);
         mIndicator= (CirclePageIndicator) view.findViewById(R.id.indicator);
+        lvList= (ListView) view.findViewById(R.id.lv_list);
         return view;
     }
     /**
@@ -107,12 +113,21 @@ public class TabDetailPager extends BaseMenuDetailPager implements ViewPager.OnP
         mTabDetailData = gson.fromJson(result, TabData.class);
         Log.d("页签详情解析:",mTabDetailData.toString());
         topnews = mTabDetailData.data.topnews;
-        mViewPager.setAdapter(new TopNewsAdapter());
-        mIndicator.setViewPager(mViewPager);
-        mIndicator.setSnap(true);//支持快照显示
-        mIndicator.setOnPageChangeListener(this);
-        mIndicator.onPageSelected(0);//让指示器重新定位到第一个点
-        mTextView.setText(topnews.get(0).title);//头条新闻标题
+        mNewList = mTabDetailData.data.news;
+        if(topnews!=null){
+            mViewPager.setAdapter(new TopNewsAdapter());
+            mIndicator.setViewPager(mViewPager);
+            mIndicator.setSnap(true);//支持快照显示
+            mIndicator.setOnPageChangeListener(this);
+            mIndicator.onPageSelected(0);//让指示器重新定位到第一个点
+            mTextView.setText(topnews.get(0).title);//头条新闻标题
+        }
+        //填充新闻列表数据
+        if(mNewList!=null){
+            newAdapter = new NewAdapter();
+            lvList.setAdapter(newAdapter);
+        }
+
     }
 
     @Override
@@ -135,6 +150,61 @@ public class TabDetailPager extends BaseMenuDetailPager implements ViewPager.OnP
 
     }
 
+    /**
+     * Description: 新闻列表适配器
+     * Blog: www.qiuchengjia.cn
+     * Data: 2016/9/4 13:05
+     * @author: qiu
+     */
+    class NewAdapter extends BaseAdapter{
+        private  BitmapUtils utils;
+        public NewAdapter(){
+            utils = new BitmapUtils(mActivity);
+            utils.configDefaultLoadingImage(R.mipmap.pic_item_list_default);
+        }
+        @Override
+        public int getCount() {
+            return mNewList.size();
+        }
+        @Override
+        public Object getItem(int position) {
+            return mNewList.get(position);
+        }
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder;
+            if(convertView==null){//加载view
+                convertView=View.inflate(mActivity,R.layout.list_news_item,null);
+                holder=new ViewHolder();
+                holder.ivPic= (ImageView) convertView.findViewById(R.id.iv_pic);
+                holder.tvData= (TextView) convertView.findViewById(R.id.tv_date);
+                holder.tvTitle= (TextView) convertView.findViewById(R.id.tv_title);
+                convertView.setTag(holder);
+            }else{
+                holder = (ViewHolder) convertView.getTag();
+            }
+            TabData.TabNewsData item = (TabData.TabNewsData) getItem(position);
+            holder.tvTitle.setText(item.title);
+            holder.tvData.setText(item.pubdata);
+            utils.display(holder.ivPic,ConfigNet.SERVER_URL_NAME+item.listimage);
+            return convertView;
+        }
+    }
+    /**
+     * Description: NewAdapter适配器的ViewHolder
+     * Blog: www.qiuchengjia.cn
+     * Data: 2016/9/6 19:07
+     * @author: qiu
+     */
+    static class ViewHolder{
+        public  TextView tvTitle;
+        public  TextView tvData;
+        public  ImageView ivPic;
+    }
     /**
      * Description: 头条新闻的数据适配器
      * Blog: www.qiuchengjia.cn
