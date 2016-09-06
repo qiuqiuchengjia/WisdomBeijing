@@ -63,10 +63,14 @@ public class TabDetailPager extends BaseMenuDetailPager implements ViewPager.OnP
     @Override
     public View initViews() {
         View view= View.inflate(mActivity, R.layout.tab_detail_pager,null);
-        mViewPager= (ViewPager) view.findViewById(R.id.vp_news);
-        mTextView= (TextView) view.findViewById(R.id.tv_title);
-        mIndicator= (CirclePageIndicator) view.findViewById(R.id.indicator);
+        //加载头布局
+        View headerView =View.inflate(mActivity,R.layout.list_header_topnews,null);
+        mViewPager= (ViewPager) headerView.findViewById(R.id.vp_news);
+        mTextView= (TextView) headerView.findViewById(R.id.tv_title);
+        mIndicator= (CirclePageIndicator) headerView.findViewById(R.id.indicator);
         lvList= (ListView) view.findViewById(R.id.lv_list);
+        //将头条新闻以头布局的形式加给listView
+        lvList.addHeaderView(headerView);
         return view;
     }
     /**

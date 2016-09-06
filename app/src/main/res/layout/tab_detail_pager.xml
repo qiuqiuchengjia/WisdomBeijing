@@ -1,44 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp">
-    <com.qiu.View.TopNewsViewPager
-        android:id="@+id/vp_news"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"/>
-        <RelativeLayout
-            android:background="#a000"
-            android:padding="3dp"
-            android:layout_alignParentBottom="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:textColor="#fff"
-                android:textSize="16sp"
-                android:id="@+id/tv_title"
-                android:layout_height="wrap_content" />
-
-            <com.viewpagerindicator.CirclePageIndicator
-                android:layout_alignParentRight="true"
-                android:id="@+id/indicator"
-                android:padding="10dp"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                app:radius="3dp"
-                app:fillColor="#f00"
-                app:pageColor="@android:color/darker_gray"
-                app:strokeWidth="0dp"
-                />
-        </RelativeLayout>
-    </RelativeLayout>
     <ListView
         android:id="@+id/lv_list"
         android:layout_width="match_parent"
