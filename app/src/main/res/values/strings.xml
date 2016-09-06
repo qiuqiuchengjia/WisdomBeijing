@@ -6,4 +6,5 @@
     <string name="smart_server_pager_title">生活</string>
     <string name="gov_affairs_pager_title">政务</string>
     <string name="setting_pager_title">设置</string>
+    <string name="refresh_text">下拉刷新</string>
 </resources>

@@ -24,6 +24,7 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import com.qiu.Activity.R;
 import com.qiu.Base.BaseMenuDetailPager;
 import com.qiu.Config.ConfigNet;
+import com.qiu.View.RefreshListView;
 import com.qiu.domian.NewsData;
 import com.qiu.domian.TabData;
 import com.viewpagerindicator.CirclePageIndicator;
@@ -45,7 +46,7 @@ public class TabDetailPager extends BaseMenuDetailPager implements ViewPager.OnP
     private TextView mTextView;//头条新闻标题
     private    ArrayList<TabData.TopNewsData> topnews;//头条新闻数据列表集合
     private CirclePageIndicator mIndicator;//头条新闻位置指示器
-    private ListView lvList;//新闻列表
+    private RefreshListView lvList;//新闻列表
     private NewAdapter newAdapter;
     private  ArrayList<TabData.TabNewsData> mNewList;//新闻数据集合
     /**
@@ -68,7 +69,7 @@ public class TabDetailPager extends BaseMenuDetailPager implements ViewPager.OnP
         mViewPager= (ViewPager) headerView.findViewById(R.id.vp_news);
         mTextView= (TextView) headerView.findViewById(R.id.tv_title);
         mIndicator= (CirclePageIndicator) headerView.findViewById(R.id.indicator);
-        lvList= (ListView) view.findViewById(R.id.lv_list);
+        lvList= (com.qiu.View.RefreshListView) view.findViewById(R.id.lv_list);
         //将头条新闻以头布局的形式加给listView
         lvList.addHeaderView(headerView);
         return view;
