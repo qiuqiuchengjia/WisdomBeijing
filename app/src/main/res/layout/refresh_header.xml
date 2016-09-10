@@ -19,6 +19,7 @@
             android:src="@mipmap/common_listview_headview_red_arrow" />
 
         <ProgressBar
+            android:indeterminateDrawable="@drawable/custom_progress"
             android:id="@+id/pb_progress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -27,9 +28,9 @@
     </FrameLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_weight="1"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
         android:gravity="center"
         android:orientation="vertical" >
 
